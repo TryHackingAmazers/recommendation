@@ -40,8 +40,8 @@ def download(url, pathname):
     time.sleep(1)
 
 if __name__ == "__main__":
-    url = "https://www.amazon.in/s?k=bed&page=2&crid=1DV4U6HCKSGJI&qid=1718372738&sprefix=bed%2Caps%2C223&ref=sr_pg_2"
-    path = "/home/rohan/hackonama/recommendation/datasets/amazon/beds"
+    url = "https://www.amazon.in/s?k=side+table+lamps&crid=214LPJM6IXQNP&sprefix=side+tablelamps%2Caps%2C197&ref=nb_sb_noss_2"
+    path = "/home/rohan/hackonama/datasets/amazon/lamp"
     for i in range(1,200,1):
         time.sleep(1)
         response = requests.get(url)

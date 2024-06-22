@@ -43,7 +43,7 @@ def process_training_images(folder, batch_size, model):
     
 def generate_cova_matrix():
     if not os.path.isfile("checkpoint/dataset.npy"):
-        process_training_images("/home/rohan/hackonama/recommendation/datasets/House_Room_Dataset",10,ym.load())
+        process_training_images("/home/rohan/hackonama/datasets/House_Room_Dataset",10,ym.load())
     
     X = np.load("checkpoint/dataset.npy").T
     
@@ -74,8 +74,8 @@ def get_recommendations(input):
     suggestions = remove_common_elements(suggestions,orig)
     return suggestions
 
-# input = np.zeros(len(items))
-# input[4] = 1
-# input[5] = 1
-# print(get_recommendations(input))
+score = ym.process_image("/home/rohan/hackonama/recommendation/TimberlandkingLSWENGE_0d80ca15-a0ad-4341-8b5e-4efa70f4c7a5.webp")
+print(score)
+reco = get_recommendations(score)
+
 
