@@ -13,7 +13,7 @@ def train():
     model.train(data=dataset_config_path, epochs=10)
 
 def load():
-    model = YOLO("/home/rohan/hackonama/recommendation/checkpoint/best.pt")
+    model = YOLO("./recommendation/checkpoint/best.pt")
     # model = YOLO("checkpoint/yolov8l.pt")
     return model
 

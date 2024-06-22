@@ -41,7 +41,7 @@ def calculate_similarity(room_features, bed_features):
     return 1 - cosine(room_features, bed_features)
 
 def choose_object(item,image):
-    folder = "../datasets/amazon/"+item
+    folder = "./datasets/amazon/"+item+"/"
     files = os.listdir(folder)
     image_features = extract_features(image)
     similarities = []
@@ -50,8 +50,7 @@ def choose_object(item,image):
         similarity = calculate_similarity(image_features, feature)
         similarities.append(similarity)
     indices = np.array(similarities).argsort()[::-1]
-    print(indices)
-    print([files[i] for i in indices])
+    return ["../"+folder+files[i] for i in indices]
 
 
-choose_object("lamp","/home/rohan/hackonama/recommendation/TimberlandkingLSWENGE_0d80ca15-a0ad-4341-8b5e-4efa70f4c7a5.webp")
+# choose_object("lamp","/home/rohan/hackonama/recommendation/TimberlandkingLSWENGE_0d80ca15-a0ad-4341-8b5e-4efa70f4c7a5.webp")
