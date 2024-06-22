@@ -54,10 +54,10 @@ def generate_cova_matrix():
 
     np.save(open("checkpoint/corm.npy", "wb"), corm)
 
-if not os.path.isfile("checkpoint/corm.npy"):
+if not os.path.isfile("./recommendation/checkpoint/corm.npy"):
     generate_cova_matrix()
 
-corm = np.load("checkpoint/corm.npy")
+corm = np.load("./recommendation/checkpoint/corm.npy")
 
 def get_recommendations(input):
     def remove_common_elements(list1, list2):
@@ -74,8 +74,8 @@ def get_recommendations(input):
     suggestions = remove_common_elements(suggestions,orig)
     return suggestions
 
-score = ym.process_image("/home/rohan/hackonama/recommendation/TimberlandkingLSWENGE_0d80ca15-a0ad-4341-8b5e-4efa70f4c7a5.webp")
-print(score)
-reco = get_recommendations(score)
+# score = ym.process_image("/home/rohan/hackonama/recommendation/TimberlandkingLSWENGE_0d80ca15-a0ad-4341-8b5e-4efa70f4c7a5.webp")
+# print(score)
+# reco = get_recommendations(score)
 
 

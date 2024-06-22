@@ -1,9 +1,9 @@
-import os
+# import os
 
 import numpy as np
 
 from ultralytics import YOLO
-import cv2
+# import cv2
 
 
 
@@ -18,12 +18,12 @@ def load():
     return model
 
 
-def process_image(image_path:str):
+def process_image(inp_image):
     model = load()
-    result = model(image_path)
+    result = model(inp_image,verbose=False)
     objects = result[0].boxes.data.cpu().numpy()
     labels_map = result[0].names
-    image = cv2.imread(image_path)
+    # image = cv2.imread(image_path)
 
     score = np.zeros(len(labels_map))
     # Iterate over each object
@@ -34,12 +34,12 @@ def process_image(image_path:str):
         x1, y1, x2, y2 = map(int, [x1, y1, x2, y2])
 
         # Draw the bounding box
-        cv2.rectangle(image, (x1, y1), (x2, y2), (0, 255, 0), 2)
+        # cv2.rectangle(image, (x1, y1), (x2, y2), (0, 255, 0), 2)
 
         # Draw the label
-        cv2.putText(image, labels_map[label], (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (36,255,12), 2)
+        # cv2.putText(image, labels_map[label], (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (36,255,12), 2)
 
     # Save the image
-    cv2.imwrite('output1.jpg', image)
+    # cv2.imwrite('output1.jpg', image)
     return score
 
