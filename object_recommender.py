@@ -1,4 +1,5 @@
 import os
+import csv
 
 import numpy as np
 import torch
@@ -42,7 +43,14 @@ def calculate_similarity(room_features, bed_features):
 
 def choose_object(item,image):
     folder = "./datasets/amazon/"+item+"/"
+    path = {}
+    with open(folder+"data.csv", 'r') as file:
+        reader = csv.reader(file)
+        for row in reader:
+            path[row[0]]=row[1]
+        
     files = os.listdir(folder)
+    files = list(filter(lambda x:x[-3:]=="jpg",files))
     image_features = extract_features(image)
     similarities = []
     for file in files:
@@ -50,7 +58,7 @@ def choose_object(item,image):
         similarity = calculate_similarity(image_features, feature)
         similarities.append(similarity)
     indices = np.array(similarities).argsort()[::-1]
-    return ["../"+folder+files[i] for i in indices]
+    return [("../"+folder+files[i],path[files[i]]) for i in indices]
 
 
 # choose_object("lamp","/home/rohan/hackonama/recommendation/TimberlandkingLSWENGE_0d80ca15-a0ad-4341-8b5e-4efa70f4c7a5.webp")
